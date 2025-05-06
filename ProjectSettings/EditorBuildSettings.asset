@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/exitPanel.unity
     guid: f29564f5a2c2a314694256ee03677cfd
+  - enabled: 1
+    path: Assets/Scenes/lvl_camera.unity
+    guid: c41f235a8b1cae04292cd141f8270527
   m_configObjects: {}
