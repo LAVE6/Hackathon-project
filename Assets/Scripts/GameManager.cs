@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
   public int size;
   private bool shuffling = false;
 
+  public int afterCompletionScene = 4;
+
   // Create the game setup with size x size pieces.
   private void CreateGamePieces(float gapThickness) {
     // This is the width of each tile.
@@ -59,7 +61,8 @@ public class GameManager : MonoBehaviour {
   void Update() {
     // Check for completion.
     if (!shuffling && CheckCompletion()) {
-            NextScene();
+            //NextScene();
+            GotoScene(afterCompletionScene);
     }
 
     // On click send out ray to see if we click a piece.
@@ -138,5 +141,13 @@ public class GameManager : MonoBehaviour {
         int presentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(presentScene + 1);
     }
+
+    public void GotoScene(int level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    public void SetHasFrame(bool hasFrame) => FrameController.hasFrame = hasFrame;
+
 }
 

@@ -55,6 +55,11 @@ public class WebcamTool : MonoBehaviour
         //PauseWebcam();
     }
 
+    void OnDisable()
+    {
+        webcamTexture.Stop();
+    }
+
     void ListAllDevices()
     {
         for (int i = 0; i < devices.Length; i++)

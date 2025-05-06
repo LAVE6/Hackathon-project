@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class PhotoBooth : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class PhotoBooth : MonoBehaviour
     [Header("Hide During Capture")]
     public GameObject[] hideDuringCapture;
 
+    [Header("Frame")]
+    public Transform frameParent;
+
     void Start()
     {
         webcamTool = GetComponentInChildren<WebcamTool>();
@@ -47,6 +51,10 @@ public class PhotoBooth : MonoBehaviour
         webcamTool?.Init();
         // photoTool?.Init();
         photoAnimController?.Init();
+        if (frameParent != null && FrameController.hasFrame)
+        {
+            frameParent.GetChild(Random.Range(0, frameParent.childCount)).gameObject.SetActive(true);
+        }
     }
 
     void OnEnable()
@@ -180,5 +188,10 @@ public class PhotoBooth : MonoBehaviour
 
         // Hide rImg_takenPhoto
         //rImg_takenPhoto.gameObject.SetActive(false);
+    }
+
+    public void ToScene(int level)
+    {
+        SceneManager.LoadScene(level);
     }
 }

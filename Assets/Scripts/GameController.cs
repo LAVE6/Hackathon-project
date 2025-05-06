@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     private int firstGuessIndex, secondGuessIndex;
 
     private string firstGuessPuzzle, secondGuessPuzzle;
+
+    public int sceneAfterCorrect = 3;
     void Start()
     {
         GetButtons();
@@ -133,10 +135,13 @@ public class GameController : MonoBehaviour
         countCorrectGuesses++;
 
         if(countCorrectGuesses == gameGuesses) {
-            NextScene();
+            toScene(sceneAfterCorrect);
         }
     }
-    public void toGameScene() => SceneManager.LoadScene(1);
+    public void toGameScene()
+    {
+        SceneManager.LoadScene(Random.Range(1,3)); //Inclusive 1 and Exclusive 3 ~ Either 1 or 2.
+    }
     public void quitGame() => Application.Quit();
     public void toMenu() => SceneManager.LoadScene(0);
     public void NextScene()
@@ -144,4 +149,6 @@ public class GameController : MonoBehaviour
         int presentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(presentScene + 1);
     }
+    public void toScene(int level) => SceneManager.LoadScene(level);
+    public void SetHasFrame(bool hasFrame) => FrameController.hasFrame = hasFrame;
 }
